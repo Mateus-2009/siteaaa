@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bravos | Barbearia em Pato Branco</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        gold: '#C5A059',
+                        surface: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        display: ['Syncopate', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        /* Gradiente do Título mais vivo */
+        .text-gradient { 
+            background: linear-gradient(135deg, #ffffff 20%, #C5A059 50%, #8A6D3B 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Efeito de brilho no texto dourado */
+        .text-glow {
+            filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
+        }
+        
+        .hero-bg { 
+            background: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,1)), 
+            url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1920'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { border-color: #C5A059; background: rgba(197, 160, 89, 0.05); }
+
+        .img-premium {
+            filter: grayscale(10%) contrast(105%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .group:hover .img-premium {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header (Menu) -->
+    <header class="fixed w-full z-50 py-4 px-6 lg:px-12">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full py-3 px-8">
+            <div class="font-display font-bold text-lg tracking-tighter uppercase">
+                Bravos<span class="text-gold">.</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-[9px] font-display tracking-widest uppercase opacity-70">
+                <a href="#diferenciais" class="hover:text-gold transition-colors">Diferenciais</a>
+                <a href="#servicos" class="hover:text-gold transition-colors">Serviços</a>
+                <a href="#contato" class="hover:text-gold transition-colors">Contato</a>
+            </div>
+            <a href="https://wa.me/554626040016" class="bg-white text-black px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-all shadow-lg">Agendar</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section (Título Reformulado) -->
+    <section class="relative min-h-screen flex items-center justify-center hero-bg px-6 text-center pt-32 pb-20">
+        <div class="max-w-5xl">
+            <!-- TÍTULO NOVO E CHAMATIVO -->
+            <h1 class="font-display mb-10 tracking-tighter leading-[0.85] uppercase">
+                <span class="block text-3xl md:text-5xl font-light text-white opacity-80 mb-2">O SEU MELHOR</span>
+                <span class="block text-7xl md:text-[130px] font-extrabold text-gradient text-glow">CORTE</span>
+                <span class="block text-4xl md:text-7xl font-normal italic text-white tracking-[0.2em] -mt-2">& BARBA</span>
+            </h1>
+            
+            <p class="text-base md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Referência em Pato Branco. Um espaço onde a precisão técnica encontra o atendimento que você realmente merece.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                <a href="https://wa.me/554626040016" class="bg-gold text-black px-12 py-5 rounded-full font-display font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(197,160,89,0.3)]">
+                    Reservar Horário
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais" class="py-32 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal glass p-10 rounded-3xl md:col-span-2 card-hover">
+                <h3 class="font-display text-2xl mb-4 uppercase text-gold">Sem complicação</h3>
+                <p class="text-gray-300 leading-relaxed text-lg font-light">
+                    Aqui a gente leva o seu tempo a sério. Nosso foco é entregar um corte bem feito e uma barba alinhada, garantindo que você esteja sempre com o visual em dia. Se precisar, a gente te avisa quando estiver na hora de voltar.
+                </p>
+            </div>
+
+            <div class="reveal glass p-10 rounded-3xl text-center flex flex-col justify-center card-hover border-gold/20 bg-gold/5">
+                <div class="text-gold mb-4 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    </svg>
+                </div>
+                <span class="text-gold font-display text-[10px] tracking-[0.3em] uppercase block mb-2 font-bold opacity-70">Nossa Localização</span>
+                <h3 class="font-display text-lg uppercase tracking-tight">Pato Branco</h3>
+                <p class="text-sm text-gray-400 mt-2 font-light leading-relaxed italic italic">Avenida Tupi, 4497</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="py-32 bg-surface">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-display text-4xl md:text-6xl mb-24 tracking-tighter uppercase text-center md:text-left">
+                O que <span class="text-gold italic">Fazemos</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- CORTE DE CABELO -->
+                <div class="reveal group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-3xl mb-6 border border-white/5 shadow-2xl bg-dark">
+                        <img src="https://lh3.googleusercontent.com/d/1vTLdHYyZD9oVX0tMXnXOfJr--F8ocDUA" class="w-full h-full object-cover img-premium" alt="Corte de Cabelo Bravos">
+                    </div>
+                    <h4 class="font-display text-2xl uppercase mb-3 text-gold">Corte de Cabelo</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light italic">
+                        Do degradê impecável ao clássico na tesoura. Lavagem inclusa e finalização de acordo com o seu estilo.
+                    </p>
+                </div>
+                
+                <!-- BARBA COMPLETA -->
+                <div class="reveal group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-3xl mb-6 border border-white/5 shadow-2xl bg-dark">
+                        <img src="https://lh3.googleusercontent.com/d/17PATptXOqlZFhxxGm7Rnst2R7P6DwkTx" class="w-full h-full object-cover img-premium" alt="Barba Completa Bravos">
+                    </div>
+                    <h4 class="font-display text-2xl uppercase mb-3 text-gold">Barba Completa</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light italic">
+                        Navalha, toalha quente e produtos específicos para hidratar a pele e o fio da barba.
+                    </p>
+                </div>
+
+                <!-- CABELO E BARBA (COMBO) -->
+                <div class="reveal md:col-span-2 group mt-8">
+                    <div class="glass p-8 md:p-12 rounded-[2rem] border-gold/20 flex flex-col md:flex-row gap-10 items-center card-hover overflow-hidden relative">
+                        <div class="w-full md:w-1/2 aspect-video overflow-hidden rounded-2xl shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover img-premium" alt="Combo Cabelo e Barba">
+                        </div>
+                        <div class="w-full md:w-1/2 text-left relative z-10">
+                            <span class="bg-gold/20 text-gold font-display text-[9px] px-3 py-1 rounded-full tracking-[0.2em] uppercase block mb-4 w-fit">Opção Completa</span>
+                            <h4 class="font-display text-3xl md:text-5xl uppercase mb-4 leading-none tracking-tighter">Cabelo & <br><span class="text-gold italic text-4xl">Barba</span></h4>
+                            <p class="text-gray-400 leading-relaxed mb-8 text-lg font-light italic">
+                                Resolva tudo de uma vez. O serviço completo que une o cuidado com o cabelo e o relaxamento de uma barba bem feita.
+                            </p>
+                            <a href="https://wa.me/554626040016" class="inline-block bg-white text-black hover:bg-gold hover:text-white px-10 py-4 rounded-full font-display font-bold text-[10px] uppercase tracking-[0.2em] transition-all">
+                                Agendar agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="py-24 px-6 border-t border-white/5 bg-dark">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div>
+                <div class="font-display font-bold text-2xl uppercase mb-6 text-gradient text-glow">Bravos.</div>
+                <p class="text-gray-500 text-sm font-light leading-relaxed">Barbearia em Pato Branco focada em qualidade técnica e respeito ao seu tempo.</p>
+            </div>
+            <div>
+                <h5 class="font-display text-sm text-gold uppercase mb-8 italic opacity-70">Fale Conosco</h5>
+                <p class="text-gray-400 text-sm">(46) 2604-0016</p>
+                <p class="text-gray-400 text-sm mt-3 font-light opacity-60">@casadosbravospb</p>
+            </div>
+            <div>
+                <h5 class="font-display text-sm text-gold uppercase mb-8 italic opacity-70">Onde estamos</h5>
+                <p class="text-gray-400 text-sm font-light italic leading-relaxed">Avenida Tupi, 4497<br>Pato Branco - PR</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 text-center text-[9px] uppercase tracking-[0.4em] opacity-30 font-display">
+            &copy; 2025 Bravos Barbearia
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animação de entrada do Título
+        gsap.from("h1 span", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+
+        gsap.from(".hero-bg p, .hero-bg a", {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            delay: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Revelação ao rolar
+        gsap.utils.toArray(".reveal").forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
